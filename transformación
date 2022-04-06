@@ -1,0 +1,51 @@
+import csv
+with open('ibm.csv', newline='') as csvfile:
+  spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+  next(spamreader)
+  for lineaOriginal in spamreader:
+    print(lineaOriginal)
+    edadEmpleado = int(lineaOriginal[0])
+    if edadEmpleado < 35: 
+      edadEmpleado = "JOVEN"
+    else: 
+      edadEmpleado = "VIEJOVEN"
+
+    distancia = int(lineaOriginal[5])
+    if distancia == 1:
+      distancia = 'CERCA'
+
+    elif distancia == 2:
+      distancia = 'MEDIO'
+
+    elif distancia == 3:
+      distancia = 'LEJOS'
+
+    else: 
+      distancia == 'MARTE'
+
+    carismaJefe = int(lineaOriginal[-1])
+    if carismaJefe == 3:
+      carismaJefe = "CHUNGO"
+    elif carismaJefe > 3: 
+      carismaJefe = 'BUEN JEFE'
+    elif carismaJefe <= 10:
+      carismaJefe = 'BUEN JEFE'
+    elif carismaJefe > 10:
+      carismaJefe = "CRACK"
+
+    if(int(lineaOriginal[-4]) == 0):
+      movilidadAscendente = 0
+    else: 
+      movilidadAscendente = int(lineaOriginal[-3]) / int(lineaOriginal[-4])
+      movilidadAscendente = round(movilidadAscendente, 1)
+
+    departamento = (lineaOriginal[4]).lower()
+    if departamento == 'sales':
+      departamento = -1 
+    elif departamento ==  'Research & Development':
+      departamento = 1 
+    else: 
+      departamento = 0 
+
+    lineafinal = [edadEmpleado, distancia, carismaJefe, movilidadAscendente, departamento]
+    print(lineafinal)
